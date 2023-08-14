@@ -1,4 +1,7 @@
-# password length input
+# Welcome to a Simple Password Generator Application!
+# In this python file, a user may generate a random password by first defining its length, and then the program will conjure up a random password based upon list-->string combinations
+# Enjoy!
+
 import random
 import string
 
