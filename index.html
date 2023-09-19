@@ -1,0 +1,597 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Map</title>
+</head>
+<body>
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_973d613e7c63c05103560b91e74be12d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+<div style="position: fixed; bottom: 50px; left: 50px; width: 150px; height: 150px;             background-color: white; border:2px solid grey; z-index:9999; font-size:14px;">
+    <p><strong>Legend:</strong></p>
+    <p style="margin-left: 10px;">&nbsp; <i class="fa fa-circle" style="color:green"></i> &nbsp; 0-5000</p>
+    <p style="margin-left: 10px;">&nbsp; <i class="fa fa-circle" style="color:blue"></i> &nbsp; 5001-10000</p>
+    <p style="margin-left: 10px;">&nbsp; <i class="fa fa-circle" style="color:purple"></i> &nbsp; 10001-15000</p>
+    <p style="margin-left: 10px;">&nbsp; <i class="fa fa-circle" style="color:red"></i> &nbsp; 15001-20000</p>
+    <p style="margin-left: 10px;">&nbsp; <i class="fa fa-circle" style="color:darkred"></i> &nbsp; 20001+</p>
+</div>
+    
+            <div class="folium-map" id="map_973d613e7c63c05103560b91e74be12d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_973d613e7c63c05103560b91e74be12d = L.map(
+                "map_973d613e7c63c05103560b91e74be12d",
+                {
+                    center: [41.3888, 2.159],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_11cb39d3bb5bb1a52519cd8b3cc22eb6 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_973d613e7c63c05103560b91e74be12d);
+        
+    
+            var marker_cluster_c847ef676ff7702a565dde4e3be9af6d = L.markerClusterGroup(
+                {}
+            );
+            map_973d613e7c63c05103560b91e74be12d.addLayer(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var marker_d97dea26a707fe3a274ee8a4573ed62d = L.marker(
+                [41.383389, 2.149],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_7baf9c098bef9b95e6d6bd2478514580 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "darkred", "prefix": "glyphicon"}
+            );
+            marker_d97dea26a707fe3a274ee8a4573ed62d.setIcon(icon_7baf9c098bef9b95e6d6bd2478514580);
+        
+    
+        var popup_e8a493f045a67058292bc45eddc8c21c = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8fdec2197134e1f3aad8bbd21ab5ee5d = $(`<div id="html_8fdec2197134e1f3aad8bbd21ab5ee5d" style="width: 100.0%; height: 100.0%;"><strong>La Nova Esquerra de l'Eixample</strong><br>Elderly Population: 20001+</div>`)[0];
+            popup_e8a493f045a67058292bc45eddc8c21c.setContent(html_8fdec2197134e1f3aad8bbd21ab5ee5d);
+        
+
+        marker_d97dea26a707fe3a274ee8a4573ed62d.bindPopup(popup_e8a493f045a67058292bc45eddc8c21c)
+        ;
+
+        
+    
+    
+            var marker_014f05c25f64553c689920ab9a07bf00 = L.marker(
+                [41.433806, 2.19286],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_be41d2c628fe71739b2eac58b6cbdae7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_014f05c25f64553c689920ab9a07bf00.setIcon(icon_be41d2c628fe71739b2eac58b6cbdae7);
+        
+    
+        var popup_38bc6b565a2ccdebf0c023f430338e96 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_96100baa366af457d61bb8cadc1c9525 = $(`<div id="html_96100baa366af457d61bb8cadc1c9525" style="width: 100.0%; height: 100.0%;"><strong>Sant Andreu</strong><br>Elderly Population: 15001-20000</div>`)[0];
+            popup_38bc6b565a2ccdebf0c023f430338e96.setContent(html_96100baa366af457d61bb8cadc1c9525);
+        
+
+        marker_014f05c25f64553c689920ab9a07bf00.bindPopup(popup_38bc6b565a2ccdebf0c023f430338e96)
+        ;
+
+        
+    
+    
+            var marker_83b60cc421bc548b785b2208df24a10b = L.marker(
+                [41.385244, 2.132863],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_1b98b40bf6f5c693d2b57944999aa150 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "purple", "prefix": "glyphicon"}
+            );
+            marker_83b60cc421bc548b785b2208df24a10b.setIcon(icon_1b98b40bf6f5c693d2b57944999aa150);
+        
+    
+        var popup_536219965c3b32dfcf1688cdf2843f57 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_052eaedcc8d62c498cc5272cc97a6f75 = $(`<div id="html_052eaedcc8d62c498cc5272cc97a6f75" style="width: 100.0%; height: 100.0%;"><strong>Les Corts</strong><br>Elderly Population: 10001-15000</div>`)[0];
+            popup_536219965c3b32dfcf1688cdf2843f57.setContent(html_052eaedcc8d62c498cc5272cc97a6f75);
+        
+
+        marker_83b60cc421bc548b785b2208df24a10b.bindPopup(popup_536219965c3b32dfcf1688cdf2843f57)
+        ;
+
+        
+    
+    
+            var marker_f5bb1ce5816b1b6c949a835159a35127 = L.marker(
+                [41.3966, 2.144013],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_3e8c979d408ac056beb9fb9c97a88e72 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_f5bb1ce5816b1b6c949a835159a35127.setIcon(icon_3e8c979d408ac056beb9fb9c97a88e72);
+        
+    
+        var popup_96e9f450c4a5f99259405444f47ef51a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_7c2aee55f81419d71ec634939366a94e = $(`<div id="html_7c2aee55f81419d71ec634939366a94e" style="width: 100.0%; height: 100.0%;"><strong>Sant Gervasi - Galvany</strong><br>Elderly Population: 15001-20000</div>`)[0];
+            popup_96e9f450c4a5f99259405444f47ef51a.setContent(html_7c2aee55f81419d71ec634939366a94e);
+        
+
+        marker_f5bb1ce5816b1b6c949a835159a35127.bindPopup(popup_96e9f450c4a5f99259405444f47ef51a)
+        ;
+
+        
+    
+    
+            var marker_02b5c7fe3438a74a51ff21953c4d4178 = L.marker(
+                [41.4002085, 2.157602],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_e7ed071a2e9456db19a0a851ec8f3340 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "purple", "prefix": "glyphicon"}
+            );
+            marker_02b5c7fe3438a74a51ff21953c4d4178.setIcon(icon_e7ed071a2e9456db19a0a851ec8f3340);
+        
+    
+        var popup_ccc379fcacb61c49bf5704af81067cae = L.popup({"maxWidth": "100%"});
+
+        
+            var html_19b7c8e8c8c6744e79ad4fa0f67e5870 = $(`<div id="html_19b7c8e8c8c6744e79ad4fa0f67e5870" style="width: 100.0%; height: 100.0%;"><strong>La Vila de Gràcia</strong><br>Elderly Population: 10001-15000</div>`)[0];
+            popup_ccc379fcacb61c49bf5704af81067cae.setContent(html_19b7c8e8c8c6744e79ad4fa0f67e5870);
+        
+
+        marker_02b5c7fe3438a74a51ff21953c4d4178.bindPopup(popup_ccc379fcacb61c49bf5704af81067cae)
+        ;
+
+        
+    
+    
+            var marker_b4de294c75ac82228d1baac76e8d78ff = L.marker(
+                [41.39, 2.155],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_d7f3c332dfab558863afb71943039be7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_b4de294c75ac82228d1baac76e8d78ff.setIcon(icon_d7f3c332dfab558863afb71943039be7);
+        
+    
+        var popup_c8068418f9be5d677b038c1a4e00576c = L.popup({"maxWidth": "100%"});
+
+        
+            var html_642526e88472c180a2741ff6efa475a6 = $(`<div id="html_642526e88472c180a2741ff6efa475a6" style="width: 100.0%; height: 100.0%;"><strong>L'Antiga Esquerra de l'Eixample</strong><br>Elderly Population: 15001-20000</div>`)[0];
+            popup_c8068418f9be5d677b038c1a4e00576c.setContent(html_642526e88472c180a2741ff6efa475a6);
+        
+
+        marker_b4de294c75ac82228d1baac76e8d78ff.bindPopup(popup_c8068418f9be5d677b038c1a4e00576c)
+        ;
+
+        
+    
+    
+            var marker_36790691c4be7bebee0730725b0c7171 = L.marker(
+                [41.375329, 2.134912],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_b1bb9878114c52da6558a10ead8eda0d = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_36790691c4be7bebee0730725b0c7171.setIcon(icon_b1bb9878114c52da6558a10ead8eda0d);
+        
+    
+        var popup_0a1748f0a51b82a2d81b27ec7fbc9908 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_b4c5c5c9674f03e2a4b2b06c95a3639f = $(`<div id="html_b4c5c5c9674f03e2a4b2b06c95a3639f" style="width: 100.0%; height: 100.0%;"><strong>Sants</strong><br>Elderly Population: 15001-20000</div>`)[0];
+            popup_0a1748f0a51b82a2d81b27ec7fbc9908.setContent(html_b4c5c5c9674f03e2a4b2b06c95a3639f);
+        
+
+        marker_36790691c4be7bebee0730725b0c7171.bindPopup(popup_0a1748f0a51b82a2d81b27ec7fbc9908)
+        ;
+
+        
+    
+    
+            var marker_6759a01f8519106edc129fcbb391a740 = L.marker(
+                [41.410754, 2.182816],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_48f264372a677d36a48269e50389f923 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_6759a01f8519106edc129fcbb391a740.setIcon(icon_48f264372a677d36a48269e50389f923);
+        
+    
+        var popup_a957328b0533dc077834ed38e8035dc1 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9c5266a93f748e23ef244bcad35bb7a0 = $(`<div id="html_9c5266a93f748e23ef244bcad35bb7a0" style="width: 100.0%; height: 100.0%;"><strong>El Camp de l'Arpa del Clot</strong><br>Elderly Population: 5001-10000</div>`)[0];
+            popup_a957328b0533dc077834ed38e8035dc1.setContent(html_9c5266a93f748e23ef244bcad35bb7a0);
+        
+
+        marker_6759a01f8519106edc129fcbb391a740.bindPopup(popup_a957328b0533dc077834ed38e8035dc1)
+        ;
+
+        
+    
+    
+            var marker_7c9738f5b80fec6f7d0466bfc399f9a7 = L.marker(
+                [41.378412, 2.161768],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_1ae131566de2c34af5f1f402427e7662 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "purple", "prefix": "glyphicon"}
+            );
+            marker_7c9738f5b80fec6f7d0466bfc399f9a7.setIcon(icon_1ae131566de2c34af5f1f402427e7662);
+        
+    
+        var popup_478d88f6f5f036cb71f4bb8b860324ab = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8a26ec536303c24665f82f428a927dd8 = $(`<div id="html_8a26ec536303c24665f82f428a927dd8" style="width: 100.0%; height: 100.0%;"><strong>Sant Antoni</strong><br>Elderly Population: 10001-15000</div>`)[0];
+            popup_478d88f6f5f036cb71f4bb8b860324ab.setContent(html_8a26ec536303c24665f82f428a927dd8);
+        
+
+        marker_7c9738f5b80fec6f7d0466bfc399f9a7.bindPopup(popup_478d88f6f5f036cb71f4bb8b860324ab)
+        ;
+
+        
+    
+    
+            var marker_2a5d6408dbfa6d18b5a2c26af0c23420 = L.marker(
+                [41.417734, 2.173632],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_6eccc7e8eb20582f65260e1bb047e5b9 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_2a5d6408dbfa6d18b5a2c26af0c23420.setIcon(icon_6eccc7e8eb20582f65260e1bb047e5b9);
+        
+    
+        var popup_55c61eefafec84ee6c0102beb21a7081 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1cbb515821edfad1cb238a2f2a8f15be = $(`<div id="html_1cbb515821edfad1cb238a2f2a8f15be" style="width: 100.0%; height: 100.0%;"><strong>El Guinardó</strong><br>Elderly Population: 15001-20000</div>`)[0];
+            popup_55c61eefafec84ee6c0102beb21a7081.setContent(html_1cbb515821edfad1cb238a2f2a8f15be);
+        
+
+        marker_2a5d6408dbfa6d18b5a2c26af0c23420.bindPopup(popup_55c61eefafec84ee6c0102beb21a7081)
+        ;
+
+        
+    
+    
+            var marker_9af18f7b37e97b9a8b0632b71ee82782 = L.marker(
+                [41.408127, 2.163295],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_7e34f06c17edad112a378c1f4ac20021 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_9af18f7b37e97b9a8b0632b71ee82782.setIcon(icon_7e34f06c17edad112a378c1f4ac20021);
+        
+    
+        var popup_ef38e5777da8c21810dcb60254b46a82 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_4e8f142dabcee5fa1d221a77ec2ac0fa = $(`<div id="html_4e8f142dabcee5fa1d221a77ec2ac0fa" style="width: 100.0%; height: 100.0%;"><strong>El Camp d'en Grassot i Gràcia Nova</strong><br>Elderly Population: 5001-10000</div>`)[0];
+            popup_ef38e5777da8c21810dcb60254b46a82.setContent(html_4e8f142dabcee5fa1d221a77ec2ac0fa);
+        
+
+        marker_9af18f7b37e97b9a8b0632b71ee82782.bindPopup(popup_ef38e5777da8c21810dcb60254b46a82)
+        ;
+
+        
+    
+    
+            var marker_3f434fdccf355e0330539a86c260189c = L.marker(
+                [41.425838, 2.205513],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_b5384ac7b5864ec40fef8d7acab01dc6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_3f434fdccf355e0330539a86c260189c.setIcon(icon_b5384ac7b5864ec40fef8d7acab01dc6);
+        
+    
+        var popup_979375cf972a0f14c769613a60c87f1f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_0ac25bf4296715e9d3ae11f5e771cb5a = $(`<div id="html_0ac25bf4296715e9d3ae11f5e771cb5a" style="width: 100.0%; height: 100.0%;"><strong>La Verneda i la Pau</strong><br>Elderly Population: 5001-10000</div>`)[0];
+            popup_979375cf972a0f14c769613a60c87f1f.setContent(html_0ac25bf4296715e9d3ae11f5e771cb5a);
+        
+
+        marker_3f434fdccf355e0330539a86c260189c.bindPopup(popup_979375cf972a0f14c769613a60c87f1f)
+        ;
+
+        
+    
+    
+            var marker_e572de4d1a24d87357810d3f3a91709f = L.marker(
+                [41.421571, 2.155799],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_18eeb7ac3a2b478a9872ffb9af6600eb = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "red", "prefix": "glyphicon"}
+            );
+            marker_e572de4d1a24d87357810d3f3a91709f.setIcon(icon_18eeb7ac3a2b478a9872ffb9af6600eb);
+        
+    
+        var popup_1eb1b3006c8e6ec548a055c3e53ac4c5 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ef6f50c57e3207687460d633db5d8002 = $(`<div id="html_ef6f50c57e3207687460d633db5d8002" style="width: 100.0%; height: 100.0%;"><strong>El Carmel</strong><br>Elderly Population: 15001-20000</div>`)[0];
+            popup_1eb1b3006c8e6ec548a055c3e53ac4c5.setContent(html_ef6f50c57e3207687460d633db5d8002);
+        
+
+        marker_e572de4d1a24d87357810d3f3a91709f.bindPopup(popup_1eb1b3006c8e6ec548a055c3e53ac4c5)
+        ;
+
+        
+    
+    
+            var marker_8b05f1d51b35ff6cc8de2d517b329161 = L.marker(
+                [41.372806, 2.161972],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_c4fbce0db32145269c4cf5ea4c6f4ad6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_8b05f1d51b35ff6cc8de2d517b329161.setIcon(icon_c4fbce0db32145269c4cf5ea4c6f4ad6);
+        
+    
+        var popup_8cf89f3f0ed31747eacd0be81269459a = L.popup({"maxWidth": "100%"});
+
+        
+            var html_75c4109c5d96dd1f9d9674b598084bb6 = $(`<div id="html_75c4109c5d96dd1f9d9674b598084bb6" style="width: 100.0%; height: 100.0%;"><strong>El Poble Sec</strong><br>Elderly Population: 5001-10000</div>`)[0];
+            popup_8cf89f3f0ed31747eacd0be81269459a.setContent(html_75c4109c5d96dd1f9d9674b598084bb6);
+        
+
+        marker_8b05f1d51b35ff6cc8de2d517b329161.bindPopup(popup_8cf89f3f0ed31747eacd0be81269459a)
+        ;
+
+        
+    
+    
+            var marker_f0e0288d05d7614fe52515141cecdf3c = L.marker(
+                [41.416519, 2.198968],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_0a11d58e46b4927145aff13eb332db05 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f0e0288d05d7614fe52515141cecdf3c.setIcon(icon_0a11d58e46b4927145aff13eb332db05);
+        
+    
+        var popup_74852b3998bd45d245c61eeb5edd5e29 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ce65689bc79189f361802c12fbec50ad = $(`<div id="html_ce65689bc79189f361802c12fbec50ad" style="width: 100.0%; height: 100.0%;"><strong>Sant Martí de Provençals</strong><br>Elderly Population: 5001-10000</div>`)[0];
+            popup_74852b3998bd45d245c61eeb5edd5e29.setContent(html_ce65689bc79189f361802c12fbec50ad);
+        
+
+        marker_f0e0288d05d7614fe52515141cecdf3c.bindPopup(popup_74852b3998bd45d245c61eeb5edd5e29)
+        ;
+
+        
+    
+    
+            var marker_a3310c02e7988ed8c6c98298f80d5dfb = L.marker(
+                [41.433021, 2.159088],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_2c15ed2f6e13b52c5d8cb6afd203ed98 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "purple", "prefix": "glyphicon"}
+            );
+            marker_a3310c02e7988ed8c6c98298f80d5dfb.setIcon(icon_2c15ed2f6e13b52c5d8cb6afd203ed98);
+        
+    
+        var popup_ffa1c81423ed5460c6ebe35172375c08 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_ce657a776ff92b08252e94f246aebb91 = $(`<div id="html_ce657a776ff92b08252e94f246aebb91" style="width: 100.0%; height: 100.0%;"><strong>Horta</strong><br>Elderly Population: 10001-15000</div>`)[0];
+            popup_ffa1c81423ed5460c6ebe35172375c08.setContent(html_ce657a776ff92b08252e94f246aebb91);
+        
+
+        marker_a3310c02e7988ed8c6c98298f80d5dfb.bindPopup(popup_ffa1c81423ed5460c6ebe35172375c08)
+        ;
+
+        
+    
+    
+            var marker_85164f004d988ad900ddc145e069d53b = L.marker(
+                [41.442334, 2.179438],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_de5db64c5124555d6b735a83241aa871 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_85164f004d988ad900ddc145e069d53b.setIcon(icon_de5db64c5124555d6b735a83241aa871);
+        
+    
+        var popup_c8c7722298450587d0e1198b5c9eb7d7 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_28a2b178775480faf9f634847ce990a2 = $(`<div id="html_28a2b178775480faf9f634847ce990a2" style="width: 100.0%; height: 100.0%;"><strong>La Prosperitat</strong><br>Elderly Population: 5001-10000</div>`)[0];
+            popup_c8c7722298450587d0e1198b5c9eb7d7.setContent(html_28a2b178775480faf9f634847ce990a2);
+        
+
+        marker_85164f004d988ad900ddc145e069d53b.bindPopup(popup_c8c7722298450587d0e1198b5c9eb7d7)
+        ;
+
+        
+    
+    
+            var marker_7a8fe9fce8e662df79b52767e8c29915 = L.marker(
+                [41.395925, 2.182324],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_7de3b74ddeea1bb54d4eee686de2fa02 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7a8fe9fce8e662df79b52767e8c29915.setIcon(icon_7de3b74ddeea1bb54d4eee686de2fa02);
+        
+    
+        var popup_fa7f487a00f45f497156160c79ec71b8 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a3d6947d9436954cee95554481bbfbff = $(`<div id="html_a3d6947d9436954cee95554481bbfbff" style="width: 100.0%; height: 100.0%;"><strong>El Fort Pienc</strong><br>Elderly Population: 5001-10000</div>`)[0];
+            popup_fa7f487a00f45f497156160c79ec71b8.setContent(html_a3d6947d9436954cee95554481bbfbff);
+        
+
+        marker_7a8fe9fce8e662df79b52767e8c29915.bindPopup(popup_fa7f487a00f45f497156160c79ec71b8)
+        ;
+
+        
+    
+    
+            var marker_dff30799d63e0cebcefb7225dde440f3 = L.marker(
+                [41.933692, 2.246626],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_751f19ad32ed39834f55c845f017a920 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_dff30799d63e0cebcefb7225dde440f3.setIcon(icon_751f19ad32ed39834f55c845f017a920);
+        
+    
+        var popup_b3e33589d1d4ca3fe3ba0c63219d27f9 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_2d0db09b5a1b13572a21a561073a6ea3 = $(`<div id="html_2d0db09b5a1b13572a21a561073a6ea3" style="width: 100.0%; height: 100.0%;"><strong>La Sagrada Família</strong><br>Elderly Population: 0-5000</div>`)[0];
+            popup_b3e33589d1d4ca3fe3ba0c63219d27f9.setContent(html_2d0db09b5a1b13572a21a561073a6ea3);
+        
+
+        marker_dff30799d63e0cebcefb7225dde440f3.bindPopup(popup_b3e33589d1d4ca3fe3ba0c63219d27f9)
+        ;
+
+        
+    
+    
+            var marker_7de10d5aec02c00f36660f27a4a4c6c1 = L.marker(
+                [41.395037, 2.167207],
+                {}
+            ).addTo(marker_cluster_c847ef676ff7702a565dde4e3be9af6d);
+        
+    
+            var icon_41870aa64a23dd22b8c71b4c2aa3f735 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "darkred", "prefix": "glyphicon"}
+            );
+            marker_7de10d5aec02c00f36660f27a4a4c6c1.setIcon(icon_41870aa64a23dd22b8c71b4c2aa3f735);
+        
+    
+        var popup_557b10505a30c8773227cbd43d03c330 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_99368a12cb6a38619bec9098fdb7bf1d = $(`<div id="html_99368a12cb6a38619bec9098fdb7bf1d" style="width: 100.0%; height: 100.0%;"><strong>La Dreta de l'Eixample</strong><br>Elderly Population: 20001+</div>`)[0];
+            popup_557b10505a30c8773227cbd43d03c330.setContent(html_99368a12cb6a38619bec9098fdb7bf1d);
+        
+
+        marker_7de10d5aec02c00f36660f27a4a4c6c1.bindPopup(popup_557b10505a30c8773227cbd43d03c330)
+        ;
+
+        
+    
+</script>
+</html>
+</body>
+</html>
